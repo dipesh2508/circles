@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
 
-interface Params{
+type Params = {
   userId: string;
   username: string;
   name: string;
