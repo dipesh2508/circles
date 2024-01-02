@@ -33,7 +33,7 @@ async function Page({ params }: { params: { id: string } }) {
                 <Image src={tab.icon} alt={tab.label} width={24} height={24} />
                 <p className="max-sm:hidden">{tab.label}</p>
 
-                {tab.label === "Threads" && (
+                {tab.label === "Circles" && (
                   <p className="ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-light-2">
                     {userInfo?.threads?.length}
                   </p>
@@ -43,11 +43,18 @@ async function Page({ params }: { params: { id: string } }) {
           </TabsList>
 
           {profileTabs.map((tab) => (
-          <TabsContent key={`content-${tab.label}`} value={tab.value} className="w-full text-light-1">
-            <ThreadsTab currentUserId={user.id} accountId={userInfo.id} accountType="User" />
-          </TabsContent>
-          ))
-          }
+            <TabsContent
+              key={`content-${tab.label}`}
+              value={tab.value}
+              className="w-full text-light-1"
+            >
+              <ThreadsTab
+                currentUserId={user.id}
+                accountId={userInfo.id}
+                accountType="User"
+              />
+            </TabsContent>
+          ))}
         </Tabs>
       </div>
     </section>
