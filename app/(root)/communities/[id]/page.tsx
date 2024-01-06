@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchCommunityDetails } from "@/lib/actions/community.actions";
 
 async function Page({ params }: { params: { id: string } }) {
+
   const user = await currentUser();
   if (!user) return null;
 
@@ -44,7 +45,7 @@ async function Page({ params }: { params: { id: string } }) {
 
                 {tab.label === "Threads" && (
                   <p className='ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-light-2'>
-                    {communityDetails.threads.length}
+                    {communityDetails?.threads?.length}
                   </p>
                 )}
               </TabsTrigger>
@@ -52,7 +53,6 @@ async function Page({ params }: { params: { id: string } }) {
           </TabsList>
 
           <TabsContent value='threads' className='w-full text-light-1'>
-            {/* @ts-ignore */}
             <ThreadsTab
               currentUserId={user.id}
               accountId={communityDetails._id}
@@ -69,14 +69,12 @@ async function Page({ params }: { params: { id: string } }) {
                   name={member.name}
                   username={member.username}
                   imgUrl={member.image}
-                  personType='User'
                 />
               ))}
             </section>
           </TabsContent>
 
           <TabsContent value='requests' className='w-full text-light-1'>
-            {/* @ts-ignore */}
             <ThreadsTab
               currentUserId={user.id}
               accountId={communityDetails._id}
